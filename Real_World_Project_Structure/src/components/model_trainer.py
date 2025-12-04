@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from utils.exception import CustomException
 from utils.logger import get_logger
 from utils.utils import save_object, load_object
+from components.model_evaluation import evaluate_models
 
 from sklearn.ensemble import(
     AdaBoostRegressor,
@@ -14,9 +15,9 @@ from sklearn.ensemble import(
 
 # from catboost import CatBoostRegressor
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
-from sklearn.neighbors import KNeighborsRegressor,
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.svm import SVR
 from xgboost import XGBRegressor
 
 
@@ -47,6 +48,7 @@ class ModelTrainer:
                 "Gradient Boosting": GradientBoostingRegressor(),
                 "Linear Regression": LinearRegression(),
                 "K-Neighbors Regressor": KNeighborsRegressor(),
+                'Support Vector Machine': SVR(gamma='auto'),
                 "XGBRegressor": XGBRegressor(),
                 "Adaboost Regressor": AdaBoostRegressor()
             }
@@ -57,11 +59,13 @@ class ModelTrainer:
                     'splitter':['best', 'random'],
                     'max_features': ['sqrt', 'log2']
                 },
+
                 'Random Forest': {
                     'criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
                     'max_features': ['sqrt', 'log2', 'None'],
                     'n_estimators': [8, 16, 32, 64, 128, 256]
                 },
+
                 'Gradient Boosting': {
                     'loss':['squared_error', 'huber', 'absolute_error', 'quantile'],
                     'learning_rate': [0.1, 0.01, 0.05, 0.001],
@@ -70,11 +74,18 @@ class ModelTrainer:
                     'max_features': ['auto', 'squrt', 'log2'],
                     'n_estimators': [8, 16, 32, 64, 128, 256]
                 },
+
                 'Linear Regression':{},
                 'XGBRegressor': {
                     'learning_rate': [0.1, 0.01, 0.05, 0.001],
                     'n_estimators':[8, 16, 32, 64, 128, 256]
                 },
+
+                'Support Vector machine': {
+                    'C':[0.1,0.3,0.5,1,10,20],
+                    'kernel':['rbf', 'linear']
+                },
+
                 'AdaBoost Regressor': {
                     'learning_rate': [0.1, 0.01, 0.05, 0.001],
                     'loss': ['linear', 'square', 'exponential'],
@@ -83,6 +94,21 @@ class ModelTrainer:
 
             }
 
+            model_report = evaluate_models(X_train, y_train, X_test, y_test, models, params)
+
+            # Pick the best Model
+            best_model_name = max(model_report, key=lambda name: model_report[name]['R2_test_score'])
+            best_model = models[best_model_name]
+
+            logger.info(f"Best model on both training and testing data: {best_model_name}")
+
+            save_object(
+                file_path=self.model_trainer_config.trained_model_file_path,
+                obj=best_model
+            )
+            logger.info(f"Model saved as: model.pkl")
+        except Exception as e:
+            raise CustomException(e, sys)
 
 
 

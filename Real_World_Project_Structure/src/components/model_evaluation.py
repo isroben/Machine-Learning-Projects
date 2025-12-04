@@ -5,6 +5,9 @@ from utils.logger import get_logger
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
+logger = get_logger(__name__)
+
+
 def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     """Trains multiple models with hyperparameter tuning and returns performance scores.
     """
@@ -39,6 +42,9 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
             mae_train_score = mean_absolute_error(y_train, y_train_pred)
             mae_test_score = mean_absolute_error(y_test, y_test_pred)
 
+            print(r2_train_score)
+            print(r2_test_score)
+
             report[model_name] = {
                 'R2_train_score': r2_train_score,
                 'R2_test_score': r2_test_score,
@@ -49,6 +55,8 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
                 'best_parameter':gs.best_params_
             }
 
-            return report
+        return report
+        
+        
     except Exception as e:
         raise CustomException(e, sys)
