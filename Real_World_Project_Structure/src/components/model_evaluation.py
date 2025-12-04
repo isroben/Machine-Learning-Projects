@@ -34,28 +34,17 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
             r2_train_score = r2_score(y_train, y_train_pred)
             r2_test_score = r2_score(y_test, y_test_pred)
 
-            # Calculate Mean Squared Error
-            mse_train_score = mean_squared_error(y_train, y_train_pred)
-            mse_test_score = mean_squared_error(y_test, y_test_pred)
+            # # Calculate Mean Squared Error
+            # mse_train_score = mean_squared_error(y_train, y_train_pred)
+            # mse_test_score = mean_squared_error(y_test, y_test_pred)
 
-            # Calculating Mean Absolute Error
-            mae_train_score = mean_absolute_error(y_train, y_train_pred)
-            mae_test_score = mean_absolute_error(y_test, y_test_pred)
+            # # Calculating Mean Absolute Error
+            # mae_train_score = mean_absolute_error(y_train, y_train_pred)
+            # mae_test_score = mean_absolute_error(y_test, y_test_pred)
 
             print(r2_train_score)
             print(r2_test_score)
 
-            report[model_name] = {
-                'R2_train_score': r2_train_score,
-                'R2_test_score': r2_test_score,
-                'mse_train_score': mse_train_score,
-                'mse_test_score': mse_test_score,
-                'mae_train_score': mae_train_score,
-                'mae_test_score': mae_test_score,
-                'best_parameter':gs.best_params_
-            }
-
-        return report
         
         
     except Exception as e:
