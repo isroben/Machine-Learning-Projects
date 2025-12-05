@@ -108,7 +108,7 @@ class ModelTrainer:
             )
             logger.info(f"Model saved as: model.pkl")
 
-        
+            return best_model, best_model_name, model_report
 
         
         except Exception as e:

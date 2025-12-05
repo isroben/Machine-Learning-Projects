@@ -13,6 +13,7 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     """
     try:
         report = {}
+        trained_model = {}
         
         for model_name, model in models.items():
             param = params.get(model_name, {})
@@ -44,8 +45,18 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
 
             print(r2_train_score)
             print(r2_test_score)
+            
+            report[model_name] = {
+                'R2_train_score': r2_train_score,
+                'R2_test_score': r2_test_score,
+                'best_params': gs.best_params_
+            }
 
+            # Store trained model
+            trained_model[model_name] = model
+
+        return report, trained_model
         
-        
+    
     except Exception as e:
         raise CustomException(e, sys)

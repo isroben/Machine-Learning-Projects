@@ -60,7 +60,7 @@ class DataTransformation:
         except Exception as e:
             raise CustomException(e, sys)
         
-    def initiate_date_transformation(self, train_path, test_path, target_column=''):
+    def initiate_data_transformation(self, train_path, test_path, target_column=''):
         try:
             train = pd.read_csv(train_path)
             test = pd.read_csv(test_path)
