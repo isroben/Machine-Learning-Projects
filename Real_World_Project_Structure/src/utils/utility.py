@@ -3,7 +3,7 @@ import sys
 import dill
 from typing import Dict, Any
 from logger import get_logger
-from src.utils.exception import CustomException
+from exception import CustomException
 
 logger = get_logger(__name__)
 
