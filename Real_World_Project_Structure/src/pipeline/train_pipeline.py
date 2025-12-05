@@ -20,7 +20,7 @@ def training_pipeline():
 
         # Data Transformation
         transform = DataTransformation()
-        train_array, test_array, _ = transform.initiate_date_transformation(train_data_path, test_data_path)
+        train_array, test_array, _ = transform.initiate_data_transformation(train_data_path, test_data_path)
 
         logger.info("Data transformation completed.")
 

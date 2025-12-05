@@ -3,8 +3,6 @@ import sys
 
 from utils.exception import CustomException
 from utils.logger import get_logger
-from components.data_transformation import DataTransformation, DataTransformationConfig
-from components.model_trainer import ModelTrainer, ModelTrainerConfig
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
