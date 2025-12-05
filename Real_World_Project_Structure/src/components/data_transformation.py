@@ -9,9 +9,9 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-from utils.exception import CustomException
-from utils.logger import get_logger
-from utils.utility import save_object
+from src.utils.exception import CustomException
+from src.utils.logger import get_logger
+from src.utils.utility import save_object
 
 logger = get_logger(__name__)
 
@@ -30,11 +30,11 @@ class DataTransformation:
         Returns a ColumnTransformer for preprocessing.
         """
         try:
-            numerical_columns = []
-            categorical_columns = []
+            numerical_columns = ['Age']
+            # categorical_columns = []
 
             logger.info(f"Numerical columns: {numerical_columns}")
-            logger.info(f"Categorical columns: {categorical_columns}")
+            # logger.info(f"Categorical columns: {categorical_columns}")
 
             numerical_pipeline = Pipeline(
                 steps=[
@@ -52,18 +52,22 @@ class DataTransformation:
 
             preprocessor = ColumnTransformer(
                 transformers=[
-                    ('numerical_pipeline', numerical_pipeline, numerical_columns)
-                    ('categorical_pipeline', categorical_pipeline, categorical_columns)
+                    ('numerical_pipeline', numerical_pipeline, numerical_columns),
+                    # ('categorical_pipeline', categorical_pipeline, categorical_columns)
                 ]
             )
             return preprocessor
         except Exception as e:
             raise CustomException(e, sys)
         
-    def initiate_data_transformation(self, train_path, test_path, target_column=''):
+    def initiate_data_transformation(self, train_path, test_path, target_column='Income($)'):
         try:
             train = pd.read_csv(train_path)
             test = pd.read_csv(test_path)
+
+            train = train.drop(columns="Name", axis=1)
+            test = test.drop(columns="Name", axis=1)
+
 
             logger.info("Train/Test data loaded successfully.")
             logger.info("Creating preprocessing object...")

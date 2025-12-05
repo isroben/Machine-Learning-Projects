@@ -2,10 +2,10 @@ import os
 import sys
 from dataclasses import dataclass
 
-from utils.exception import CustomException
-from utils.logger import get_logger
-from utils.utility import save_object
-from components.model_evaluation import evaluate_models
+from src.utils.exception import CustomException
+from src.utils.logger import get_logger
+from src.utils.utility import save_object
+from src.components.model_evaluation import evaluate_models
 
 from sklearn.ensemble import(
     AdaBoostRegressor,

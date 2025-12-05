@@ -1,8 +1,8 @@
 import os
 import sys
 
-from utils.exception import CustomException
-from utils.logger import get_logger
+from src.utils.exception import CustomException
+from src.utils.logger import get_logger
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -13,7 +13,7 @@ logger = get_logger(__name__)
 
 @dataclass
 class DataIngestionConfig:
-    source_data_path: str = os.path.join('data', 'income.csv')
+    source_data_path: str = r"C:\Users\roben\Codes\Machine-Learning-Projects\Real_World_Project_Structure\data\income.csv"
     train_data_path: str = os.path.join('data', 'train.csv')
     test_data_path: str = os.path.join('data', 'test.csv')
     raw_data_path: str = os.path.join('data', 'data.csv')

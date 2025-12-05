@@ -2,8 +2,8 @@ import os
 import sys
 import dill
 from typing import Dict, Any
-from logger import get_logger
-from exception import CustomException
+from src.utils.logger import get_logger
+from src.utils.exception import CustomException
 
 logger = get_logger(__name__)
 

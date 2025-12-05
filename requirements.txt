@@ -8,3 +8,5 @@ notebook
 dill
 xgboost
 catboost
+setuptools
+-e .
