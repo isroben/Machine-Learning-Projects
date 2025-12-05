@@ -11,7 +11,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 from utils.exception import CustomException
 from utils.logger import get_logger
-from utils.utils import save_object
+from utils.utility import save_object
 
 logger = get_logger(__name__)
 

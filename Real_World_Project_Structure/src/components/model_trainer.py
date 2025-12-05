@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from utils.exception import CustomException
 from utils.logger import get_logger
-from utils.utils import save_object, load_object
+from utils.utility import save_object
 from components.model_evaluation import evaluate_models
 
 from sklearn.ensemble import(

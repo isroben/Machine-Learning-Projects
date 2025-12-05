@@ -2,8 +2,8 @@ import sys
 from utils.exception import CustomException
 from utils.logger import get_logger
 
-from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from sklearn.metrics import r2_score
+from sklearn.model_selection import GridSearchCV
 
 logger = get_logger(__name__)
 

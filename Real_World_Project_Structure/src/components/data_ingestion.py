@@ -13,10 +13,10 @@ logger = get_logger(__name__)
 
 @dataclass
 class DataIngestionConfig:
-    source_data_path: str = os.path.join('notebook', 'data', 'stud.csv')
-    train_data_path: str = os.path.join('artifacts', 'train.csv')
-    test_data_path: str = os.path.join('artifacts', 'test.csv')
-    raw_data_path: str = os.path.join('artifacts', 'data.csv')
+    source_data_path: str = os.path.join('data', 'income.csv')
+    train_data_path: str = os.path.join('data', 'train.csv')
+    test_data_path: str = os.path.join('data', 'test.csv')
+    raw_data_path: str = os.path.join('data', 'data.csv')
 
 class DataIngestion:
     def __init__(self):
