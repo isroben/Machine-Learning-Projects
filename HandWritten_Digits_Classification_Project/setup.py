@@ -25,7 +25,7 @@ list_of_files = [
     f'templates/home.html',
     f'templates/index.html',
     f'main.py',
-    f'templte.py',
+    f'template.py',
     f'README.md'
 ]
 
