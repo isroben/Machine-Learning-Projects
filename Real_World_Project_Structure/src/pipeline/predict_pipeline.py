@@ -6,20 +6,17 @@ from src.utils.utility import load_object
 
 class PredictPipeline:
     def __init__(self):
-        pass
+        try:
+            self.preprocessor = load_object(r'')
+            self.model = load_object(r'')
+        except Exception as e:
+            raise CustomException(e, sys)
 
     def predict(self, features):
         try:
-            model_path = r'src\pipeline\artifacts\preprocessor.pkl'
-            preprocessor_path = r'src\pipeline\artifacts\model.pkl'
-            print("Before loading")
-            model = load_object(file_path=model_path)
-            preprocessor = load_object(file_path=preprocessor_path)
-
-            # Print(f"Features before transformation is:\n {features}")
-            data_scaled = preprocessor.transform(features)
+            data_scaled = self.preprocessor.transform(features)
             print(f'Data scaled after transformation is: \n {data_scaled}')
-            preds = model.predict(data_scaled)
+            preds = self.model.predict(data_scaled)
 
 
             return preds
@@ -28,13 +25,13 @@ class PredictPipeline:
         
 
 class CustomData:
-    def __init__(self, age:int):
-        self.age = age
+    def __init__(self, **kwargs):
+        self.data = kwargs
 
     def get_data_as_dataframe(self):
         try:
             custom_data_input_dict = {
-                'age':[self.age]
+                'age':[self.data]
             }
             return pd.DataFrame(custom_data_input_dict)
         
