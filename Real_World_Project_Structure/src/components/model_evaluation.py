@@ -9,7 +9,8 @@ logger = get_logger(__name__)
 
 
 def evaluate_models(X_train, y_train, X_test, y_test, models, params):
-    """Trains multiple models with hyperparameter tuning and returns performance scores.
+    """
+    Trains multiple models with hyperparameter tuning and returns performance scores.
     """
     try:
         report = {}
@@ -21,7 +22,7 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
             gs = GridSearchCV(model, param, cv=5)
             gs.fit(X_train, y_train)
 
-            print(gs.best_params_)
+            print(f"Best Parameter found by GridSearch:\n{gs.best_params_}")
 
             # Set best parameters and retrain
             model.set_params(**gs.best_params_)
@@ -43,8 +44,8 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
             # mae_train_score = mean_absolute_error(y_train, y_train_pred)
             # mae_test_score = mean_absolute_error(y_test, y_test_pred)
 
-            print(r2_train_score)
-            print(r2_test_score)
+            print(f"R2 Train Score:\n{r2_train_score}")
+            print(f"R2 Test Score:\n{r2_test_score}")
             
             report[model_name] = {
                 'R2_train_score': r2_train_score,
