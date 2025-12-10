@@ -13,6 +13,7 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     Trains multiple models with hyperparameter tuning and returns performance scores.
     """
     try:
+
         report = {}
         trained_model = {}
         
@@ -52,9 +53,12 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
                 'R2_test_score': r2_test_score,
                 'best_params': gs.best_params_
             }
+            logger.info(f"Report Stored!")
 
             # Store trained model
             trained_model[model_name] = model
+            logger.info(f"trained model Stored!")
+
 
         return report, trained_model
         
