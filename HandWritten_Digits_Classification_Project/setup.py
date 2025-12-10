@@ -3,6 +3,8 @@ from pathlib import Path
 import logging
 from setuptools import find_packages, setup
 
+HYPEN_E_DOT = '-e .'
+
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 
 list_of_files = [
@@ -49,7 +51,7 @@ for filepath in list_of_files:
 
 
 setup(
-    name = "Hand Written Digits Classification",
+    name = "Hand_Written_Digits_Classification",
     version='0.0.1',
     author= 'Roben',
     author_email= 'creatoroben@gmail.com',
