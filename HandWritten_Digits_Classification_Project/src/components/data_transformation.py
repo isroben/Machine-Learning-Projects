@@ -59,3 +59,17 @@ class DataTransformation:
             X_test_array = preprocessor.fit_transform(X_test)
 
             logger.info(f"Preprocessing completed. Training shape: {X_train_array.shape}")
+
+            save_object(
+                file_path=self.config.preprocessor_obj_file_path,
+                obj = preprocessor
+            )
+
+            logger.info("Preprocessing saved successfully!")
+
+            return X_train_array, X_test_array, self.config.preprocessor_obj_file_path
+        
+        except Exception as e:
+            raise CustomException(e, sys)
+
+            
