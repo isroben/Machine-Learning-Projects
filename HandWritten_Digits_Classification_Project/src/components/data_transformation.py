@@ -1,7 +1,7 @@
 import sys
 import os
 from dataclasses import dataclass
-import pandas as pd
+import numpy as np
 
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
@@ -60,6 +60,8 @@ class DataTransformation:
 
             logger.info(f"Preprocessing completed. Training shape: {X_train_array.shape}")
 
+            X_train_array = np.
+
             save_object(
                 file_path=self.config.preprocessor_obj_file_path,
                 obj = preprocessor
@@ -67,7 +69,7 @@ class DataTransformation:
 
             logger.info("Preprocessing saved successfully!")
 
-            return X_train_array, X_test_array, self.config.preprocessor_obj_file_path
+            return X_train_array,y_train, X_test_array, y_test, self.config.preprocessor_obj_file_path
         
         except Exception as e:
             raise CustomException(e, sys)
