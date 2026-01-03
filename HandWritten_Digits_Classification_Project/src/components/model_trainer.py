@@ -60,5 +60,20 @@ class ModelTrainer:
                     'solver': ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga']
                 }
             }
-        except:
-            pass
+
+            model_report = evaluate_models(X_train, y_train, X_test, y_test, models, params)
+
+            best_model_name = max(model_report, key=lambda name: model_report[name]['R2_test_score'])
+            best_model = models[best_model_name]
+
+            logger.info(f"Best model on both training and testing data: {best_model_name}")
+
+            save_object(
+                file_path=self.model_trainer_config.trained_model_file_path,
+                obj=best_model
+            )
+            logger.info(f"Model saved as: model.pkl")
+
+            return best_model, best_model_name, model_report
+        except Exception as e:
+            raise CustomException(e, sys)
