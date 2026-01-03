@@ -60,7 +60,7 @@ class DataTransformation:
 
             logger.info(f"Preprocessing completed. Training shape: {X_train_array.shape}")
 
-            X_train_array = np.
+            X_train_array = np.column_stack((X_train_array, y_train.to_numpy()))
 
             save_object(
                 file_path=self.config.preprocessor_obj_file_path,
