@@ -25,10 +25,40 @@ class ModelTrainer:
     def __init__(self):
         self.model_trainer_config = ModelTrainerConfig()
 
-    def initiate_model_trainer(self, train_arr, test_arr):
+    def initiate_model_trainer(self, X_train, y_train, X_test, y_test):
         try:
             logger.info("Splitting training and testing input data.")
 
-            X_train, y_train, X_test, y_test = ()
+            models = {"Random Forest": RandomForestClassifier(),
+                      "Decision Tree": DecisionTreeClassifier(),
+                      "Gradient Boosting": GradientBoostingClassifier(),
+                      "Logistic Regression": LogisticRegression(),
+                      "K-Neighbors Classifier": KNeighborsClassifier(),
+                      "Support Vector Machine": SVC(),
+                      "XGBClassifier": XGBClassifier(),
+                      "Adaboost Classifier": AdaBoostClassifier()
+                      }
+            
+            params = {
+                "Decision Tree": {
+                    'criterion': ['gini', 'entrophy'],
+                    'splitter': ['best', 'random'],
+                    'max_features':['sqrt', 'log2']
+                },
+                "Random Forest": {
+                    'criterion': ['gini', 'entrophy'],
+                    'splitter': ['best', 'random'],
+                    'max_features':['sqrt', 'log2']
+                },
+                "Gradient Boosting": {
+                    'loss': ['log_loss', 'exponential'],
+                    'criterion': ['squared_error', 'friedman_mse'],
+                    'max_features': ['auto', 'squrt', 'log2']
+                },
+                "Logistic Regression": {
+                    'penalty': ['l1', 'l2', 'elasticnet'],
+                    'solver': ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga']
+                }
+            }
         except:
             pass
