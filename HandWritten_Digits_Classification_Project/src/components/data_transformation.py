@@ -60,8 +60,6 @@ class DataTransformation:
 
             logger.info(f"Preprocessing completed. Training shape: {X_train_array.shape}")
 
-            X_train_array = np.column_stack((X_train_array, y_train.to_numpy()))
-
             save_object(
                 file_path=self.config.preprocessor_obj_file_path,
                 obj = preprocessor
@@ -69,7 +67,7 @@ class DataTransformation:
 
             logger.info("Preprocessing saved successfully!")
 
-            return X_train_array,y_train, X_test_array, y_test, self.config.preprocessor_obj_file_path
+            return np.array(X_train), y_train, np.array(X_test), y_test
         
         except Exception as e:
             raise CustomException(e, sys)
