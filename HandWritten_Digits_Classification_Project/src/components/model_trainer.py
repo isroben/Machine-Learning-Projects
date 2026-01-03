@@ -50,6 +50,10 @@ class ModelTrainer:
                     'splitter': ['best', 'random'],
                     'max_features':['sqrt', 'log2']
                 },
+                "Support Vector machine": {
+                    'C':[0.1,0.3,0.5,1,10,20],
+                    'kernel':['rbf', 'linear']
+                },
                 "Gradient Boosting": {
                     'loss': ['log_loss', 'exponential'],
                     'criterion': ['squared_error', 'friedman_mse'],
@@ -58,6 +62,10 @@ class ModelTrainer:
                 "Logistic Regression": {
                     'penalty': ['l1', 'l2', 'elasticnet'],
                     'solver': ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga']
+                },
+                "K-Neighbors Classifier": {
+                    'weights': ['uniform', 'distance'],
+                    'algorithm': ['brute', 'ball_tree', 'kd_tree']
                 }
             }
 
