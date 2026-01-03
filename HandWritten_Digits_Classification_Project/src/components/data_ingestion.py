@@ -1,5 +1,6 @@
 import os
 import sys
+from dataclasses import dataclass
 
 from src.utils.exception import CustomException
 from src.utils.logger import get_logger
@@ -7,7 +8,6 @@ from src.utils.logger import get_logger
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_digits
-from dataclasses import dataclass
 
 
 logger = get_logger(__name__)
