@@ -2,6 +2,7 @@ import os
 import sys
 from dataclasses import dataclass
 
+
 from src.utils.exception import CustomException
 from src.utils.logger import get_logger
 
@@ -19,6 +20,8 @@ try:
 
     dataset['target'] = y
 
+    logger.info("Data Loaded successfully.")
+
 except Exception as e:
     raise CustomException(e, sys)
 
@@ -33,7 +36,7 @@ class DataIngestion:
     def __init__(self):
         self.config = DataIngestionConfig()
 
-    def inititate_data_ingestion(self):
+    def initiate_data_ingestion(self):
         logger.info("Starting data ingestion process.")
 
         try:

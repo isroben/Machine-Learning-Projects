@@ -40,7 +40,7 @@ class DataTransformation:
         except Exception as e:
             raise CustomException(e, sys)
         
-    def initiate_data_transformation(self, train_set, test_set, target_column):
+    def initiate_data_transformation(self, train_set, test_set, target_column='target'):
         try:
 
             logger.info("Train/Test data loaded successfully.")
@@ -66,8 +66,13 @@ class DataTransformation:
             )
 
             logger.info("Preprocessing saved successfully!")
+            print("✅ RETURN EXECUTED")
 
-            return np.array(X_train), y_train, np.array(X_test), y_test
+            return((np.array(X_train)),
+                y_train,
+                (np.array(X_test)),
+                y_test
+            )
         
         except Exception as e:
             raise CustomException(e, sys)

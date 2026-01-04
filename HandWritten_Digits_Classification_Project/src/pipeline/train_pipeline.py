@@ -15,7 +15,7 @@ def trainingPipeline():
 
         # Data Ingestion
         ingestion = DataIngestion()
-        train_set, test_set = ingestion.inititate_data_ingestion()
+        train_set, test_set = ingestion.initiate_data_ingestion()
 
         logger.info("Data ingestion completed.")
 
