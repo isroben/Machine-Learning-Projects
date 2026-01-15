@@ -66,13 +66,13 @@ class DataTransformation:
             )
 
             logger.info("Preprocessing saved successfully!")
-            print("✅ RETURN EXECUTED")
 
-            return((np.array(X_train)),
-                y_train,
-                (np.array(X_test)),
-                y_test
-            )
+            X_train = np.array(X_train)
+            X_test = np.array(X_test)
+
+            print("RETURN EXECUTED")
+
+            return X_train, y_train, X_test, y_test
         
         except Exception as e:
             raise CustomException(e, sys)
